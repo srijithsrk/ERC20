@@ -32,7 +32,8 @@ require(tokens > 0 && balance[to] >= tokens);  // tokens can be transferred only
 // ignorance of spamming is also considered
 balances[msg.sender] = balances[msg.sender].sub(tokens);  //for deduction of amount of sender after transferring
 // sub used to prevent overflow
-balances[to] = balances[to].add[tokens]; // to add money to the reciever
+balances[to] = balances[to].add[tokens];// to add money to the reciever
+Transfer[msg.sender, to, tokens];  //events
 return true;
 }
 
@@ -40,8 +41,10 @@ function approve(address spender, uint tokens) public returns (bool success);
 // approves the delegates to allow them to transfer some amount of money only
 {
 allowed[msg.sender][sender] = tokens;
+Approval(msg.sender, spender, tokens);
 return true;
 }
+
 function transferFrom(address from, address to, uint tokens) public returns (bool success);
 {
 require(tokens > 0 && balances[from] >= tokens;
@@ -49,6 +52,7 @@ balances[from] = balances[from].sub(tokens);
 allowed[msg.sender][from] = allowed[msg.sender][from].sub(tokens);
 // depreciating the value of the token creator who assigned delegates
 balances[to] = balances[to].add[tokens];
+Transfer(from, to, tokens);  //events
+return true;
 }
-
-
+}
