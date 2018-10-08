@@ -1,7 +1,11 @@
 pragma solidity ^0.4.0;
 contract MyToken
 {
-function totalSupply() public constant returns (uint);
+string constant public name = "srijith";
+string constant public symbol = "SRK";
+uint constant public decimal = 18;  //equivalent to wei
+uint constant public _tokenSupply = 1000;
+
 
     function balanceOf(address tokenOwner) public constant returns (uint balance);
 
@@ -17,3 +21,8 @@ function totalSupply() public constant returns (uint);
     event Transfer(address indexed from, address indexed to, uint tokens);
 
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+
+function totalSupply() public pure returns (uint)
+{
+return _tokenSupply;
+}
