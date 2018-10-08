@@ -9,11 +9,8 @@ uint constant public decimal = 18;  //equivalent to wei
 uint constant public _tokenSupply = 1000;
 mapping(address => uint) balances;
 mapping(address => mapping(address => uint) allowed  //assigning delegates with some of our tokens
-
-   //function approve(address spender, uint tokens) public returns (bool success);
-    //function transferFrom(address from, address to, uint tokens) public returns (bool success);
-    //event Transfer(address indexed from, address indexed to, uint tokens);
-    //event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+  //event Transfer(address indexed from, address indexed to, uint tokens);
+  //event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
 function totalSupply() public pure returns (uint)
 {
 return _tokenSupply;
@@ -39,5 +36,19 @@ balances[to] = balances[to].add[tokens]; // to add money to the reciever
 return true;
 }
 
+function approve(address spender, uint tokens) public returns (bool success);
+// approves the delegates to allow them to transfer some amount of money only
+{
+allowed[msg.sender][sender] = tokens;
+return true;
+}
+function transferFrom(address from, address to, uint tokens) public returns (bool success);
+{
+require(tokens > 0 && balances[from] >= tokens;
+balances[from] = balances[from].sub(tokens);
+allowed[msg.sender][from] = allowed[msg.sender][from].sub(tokens);
+// depreciating the value of the token creator who assigned delegates
+balances[to] = balances[to].add[tokens];
+}
 
 
